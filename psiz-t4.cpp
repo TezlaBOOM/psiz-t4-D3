@@ -18,18 +18,26 @@ void Nowypliki(string nazwaPliku, int licznik, char wartosc)
 
         }
 }
+void log(int bit, int ber){
+
+
+    ofstream mFile("log.txt", ios::app);
+    mFile << "bit: " << bit << " ber: " << ber << endl;
+}
 
 
 
 int main( int argc, char * argv[] )
 {
-    Nowypliki("test1.bin", 100, 0x55);
+    log(1,2);
+
+   /* Nowypliki("test1.bin", 100, 0x55);
     Nowypliki("test2.bin", 100, 0x55);
 
     Nowypliki("test3.bin", 100, 0x55);
     Nowypliki("test4.bin", 100, 0xF5);
 
     Nowypliki("test5.bin", 1024*1024*400, 0x55);
-    Nowypliki("test6.bin", 1024*1024*400, 0x50);
+    Nowypliki("test6.bin", 1024*1024*400, 0x50);*/
     return 0;
 }
