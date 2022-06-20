@@ -25,7 +25,7 @@ void logtxt(const char* Plik1,const char* Plik2, float bit, float ber){
     wynikber = ber / bit;
     ofstream mFile("log.txt", ios::app);
     mFile <<"Porównaie pliku:"<< Plik1<< " i "<< Plik2 << " wynosi w bitach: " << bit << " i w ber: " << wynikber << endl;
-    cout <<"Porównaie pliku:"<< Plik1<< " i "<< Plik2 << " wynosi w bitach: " << bit << " i w ber: " << wynikber << endl;
+    cout <<"Porównaie pliku:"<< Plik1<< " i "<< Plik2 << " wynosi w bitach: " << bit << " ilość błednych bitów: " << ber <<" i w ber: " << wynikber << endl;
 }
 
 
@@ -78,22 +78,34 @@ void Porownanie(const char* Plik1,const char* Plik2) {
 
 
 
-
+clock_t start, stop;
+double czas;
 
 int main()
 {
     
-
+    start = clock();
    Nowypliki("test1.bin", 100, 0x55);
     Nowypliki("test2.bin", 100, 0x55);
     Porownanie("test1.bin","test2.bin");
-    
-  Nowypliki("test3.bin", 100, 0x55);
+    stop = clock();
+    czas = (double)(stop - start) / CLOCKS_PER_SEC;
+    cout << "Obliczanie rekurencyjnie zajmie: " << czas << endl;
+
+    start = clock();
+    Nowypliki("test3.bin", 100, 0x55);
     Nowypliki("test4.bin", 100, 0xF5);
     Porownanie("test3.bin","test4.bin");
-/*
+    stop = clock();
+    czas = (double)(stop - start) / CLOCKS_PER_SEC;
+    cout << "Obliczanie rekurencyjnie zajmie: " << czas << endl;
+    start = clock();
     Nowypliki("test5.bin", 1024*1024*400, 0x55);
     Nowypliki("test6.bin", 1024*1024*400, 0x50);
-    Porownanie("test5.bin","test6.bin");*/
+    Porownanie("test5.bin","test6.bin");
+    stop = clock();
+    czas = (double)(stop - start) / CLOCKS_PER_SEC;
+    cout << "Obliczanie rekurencyjnie zajmie: " << czas << endl;
+
     return 0;
 }
